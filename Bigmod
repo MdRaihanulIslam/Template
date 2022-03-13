@@ -1,0 +1,16 @@
+ll bigmod(ll base,ll power,ll mod)
+{
+    if(power==0)
+        return 1;
+    else if(power%2==1)
+    {
+        ll a = base%mod;
+        ll b = (bigmod(base,power-1,mod))%mod;
+        return (a*b)%mod;
+    }
+    else
+    {
+        ll a = (bigmod(base,power/2,mod))%mod;
+        return (a*a)%mod;
+    }
+}
