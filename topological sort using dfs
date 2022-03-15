@@ -1,0 +1,99 @@
+/** Bismillah Hir Rahman Nir Raheem **/
+#include<bits/stdc++.h>
+#define   Raihan          ios::sync_with_stdio(false);cin.tie(0);
+#define   ll              long long int
+#define   ull             unsigned long long int
+#define   tst             int t;cin>>t;while(t--)
+#define   pb              push_back
+#define   vc              vector
+#define   vs              vc<string>
+#define   vi              vc<int>
+#define   vl              vc<ll>
+#define   pii             pair<int,int>
+#define   pll             pair<ll,ll>
+#define   F               first
+#define   S               second
+#define   PI              2*acos(0.0)
+#define   rsrt(v)         sort(v.rbegin(),v.rend());
+#define   all(v)          v.begin(),v.end()
+#define   pf(x)           cout<<x<<endl;
+#define   yes             cout<<"YES"<<endl;
+#define   no              cout<<"NO"<<endl;
+#define   ms(x,n)         memset(x,n,sizeof(x));
+#define   srt(v)          sort(v.begin(),v.end());
+#define   rvs(v)          reverse(v.begin(),v.end());
+#define   gcd(a,b)        __gcd(a,b)
+#define   lcm(a,b)        (a/gcd(a,b))*b
+#define   coutv(v)        for(auto it:v)cout<<it<<' ';cout<<endl;
+#define   cinv(v)         for(auto &it:v)cin>>it;
+#define   mod             1000000007
+const int N = 2e5+10;
+using namespace std;
+vl adj[30];
+ll vis[30],cycle = 0;
+vl ans;
+void cycle_detection(ll node)
+{
+    if(vis[node]==1)
+    {
+        cycle = 1;
+        return;
+    }
+    if(vis[node]==2)
+        return;
+    vis[node] = 1;
+    for(auto child:adj[node])
+        cycle_detection(child);
+    vis[node] = 2;
+    ans.pb(node);
+}
+int main()
+{
+    Raihan
+    //tst
+    {
+        ll n;
+        cin>>n;
+        vs s(n);
+        cinv(s)
+        for(int i=1;i<n;i++)
+        {
+            string prev = s[i-1],cur = s[i];
+            ll ln = min(prev.size(),cur.size());
+            bool flag = 0;
+            for(int j=0;j<ln;j++)
+            {
+                ll a = prev[j]-'a',b =  cur[j]-'a';
+                if(a!=b)
+                {
+                    flag = 1;
+                    adj[a].pb(b);
+                    break;
+                }
+            }
+            if(!flag && prev.size()>cur.size())
+            {
+                return cout<<"Impossible"<<endl,0;
+            }
+        }
+        for(int i=0;i<26;i++)
+        {
+            if(!vis[i])
+            {
+                cycle_detection(i);
+            }
+        }
+        if(cycle)
+        {
+            return cout<<"Impossible"<<endl,0;
+        }
+        reverse(ans.begin(),ans.end());
+        for(auto it:ans)
+        {
+            cout<<char(it+'a');
+        }
+        cout<<endl;
+    }
+
+    return 0;
+}
