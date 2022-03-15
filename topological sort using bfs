@@ -1,0 +1,96 @@
+/** Bismillah Hir Rahman Nir Raheem **/
+#include<bits/stdc++.h>
+#define   Raihan          ios::sync_with_stdio(false);cin.tie(0);
+#define   ll              long long int
+#define   ull             unsigned long long int
+#define   tst             int t;cin>>t;while(t--)
+#define   pb              push_back
+#define   vc              vector
+#define   vs              vc<string>
+#define   vi              vc<int>
+#define   vl              vc<ll>
+#define   pii             pair<int,int>
+#define   pll             pair<ll,ll>
+#define   F               first
+#define   S               second
+#define   PI              2*acos(0.0)
+#define   rsrt(v)         sort(v.rbegin(),v.rend());
+#define   all(v)          v.begin(),v.end()
+#define   pf(x)           cout<<x<<endl;
+#define   yes             cout<<"YES"<<endl;
+#define   no              cout<<"NO"<<endl;
+#define   ms(x,n)         memset(x,n,sizeof(x));
+#define   srt(v)          sort(v.begin(),v.end());
+#define   rvs(v)          reverse(v.begin(),v.end());
+#define   gcd(a,b)        __gcd(a,b)
+#define   lcm(a,b)        (a/gcd(a,b))*b
+#define   coutv(v)        for(auto it:v)cout<<it<<' ';cout<<endl;
+#define   cinv(v)         for(auto &it:v)cin>>it;
+#define   mod             1000000007
+const int N = 2e2+10;
+using namespace std;
+string s[N];
+ll in[N];
+vl g[N];
+int main()
+{
+    Raihan
+    //tst
+    {
+        ll n;
+        cin>>n;
+        for(int i=1;i<=n;i++)
+        {
+            cin>>s[i];
+        }
+        bool flag = 0;
+        string ok = "";
+        for(int i=2;i<=n;i++)
+        {
+            int la = s[i-1].size();
+            int lb = s[i].size();
+            ll top = 0;
+            for(int j=0;j<la && j<lb;j++)
+            {
+                if(s[i-1][j]!=s[i][j])
+                {
+                    top++;
+                    int a = s[i-1][j]-'a'+1;
+                    int b = s[i][j]-'a'+1;
+                    in[b]++;
+                    g[a].pb(b);
+                    break;
+                }
+            }
+            if(!top && la>lb)
+            {
+                puts("Impossible");
+                exit(0);
+            }
+        }
+        queue<ll>q;
+        for(int i=1;i<=26;i++)
+        {
+            if(!in[i])
+                q.push(i);
+        }
+        while(!q.empty())
+        {
+            int u = q.front();
+            q.pop();
+            ok+=(u-1+'a');
+            for(int j=0;j<g[u].size();j++)
+            {
+                int v = g[u][j];
+                in[v]--;
+                if(!in[v])
+                    q.push(v);
+            }
+        }
+        if(ok.size()==26)
+            cout<<ok<<endl;
+        else cout<<"Impossible"<<endl;
+    }
+
+    return 0;
+}
