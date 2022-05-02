@@ -1,0 +1,13 @@
+int st[N],en[N],timer = 0;
+vl adj[N];
+void dfs(int node,int parrent)
+{
+    st[node] = ++timer;
+    for(auto child:adj[node])
+    {
+        if(child==parrent)
+            continue;
+        dfs(child,node);
+    }
+    en[node] = ++timer;
+}
