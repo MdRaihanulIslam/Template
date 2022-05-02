@@ -1,0 +1,36 @@
+bool vis[N];
+int dis[N],par[N];
+vl adj[N];
+void BFS()
+{
+    queue<int>q;
+    q.push(1);
+    vis[1] = 1;
+    dis[1] = 0;
+    par[1] = -1;
+    vector<int>path;
+    while(!q.empty())
+    {
+        int node = q.front();
+        q.pop();
+        for(auto child:adj[node])
+        {
+            if(!vis[child])
+            {
+                vis[child] = 1;
+                dis[child] = dis[node]+1;
+                q.push(child);
+                par[child] = node;
+            }
+        }
+    }
+    int need = 5;
+    while(need!=-1)
+    {
+        path.pb(need);
+        need = par[need];
+    }
+    for(int i=0;i<path.size();i++)
+        cout<<path[i]<<" ";
+    cout<<endl;
+}
