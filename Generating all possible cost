@@ -1,0 +1,15 @@
+vector<pair<ll,ll>>adj[N];
+bool vis[1000][1000];
+void dfs(int node,int time)
+{
+    vis[node][time] = 1;
+    for(auto child:adj[node])
+    {
+        int v = child.F;
+        int w = child.S;
+        if(time+w<=1000 && !vis[v][time+w])
+        {
+            dfs(v,time+w);
+        }
+    }
+}
