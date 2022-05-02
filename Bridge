@@ -1,0 +1,27 @@
+int depth[N],low[N];
+bool vis[N];
+vl adj[N];
+int cnt;
+void dfs(int node,int parrent,int d)
+{
+    depth[node] = d;
+    low[node] = d;
+    vis[node] = 1;
+    for(auto child:adj[node])
+    {
+        if(child==parrent)
+            continue;
+        if(!vis[child])
+        {
+            dfs(child,node,d+1);
+            low[node] = min(low[node],low[child]);
+        }
+        else
+        {
+             if(depth[child]<depth[node])
+                low[node] = min(low[node],depth[child]);
+        }
+    }
+    if(parrent!=-1 && low[node]>depth[parrent])
+        cnt++;
+}
