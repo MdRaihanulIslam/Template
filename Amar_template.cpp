@@ -29,14 +29,26 @@
 #define   mod             1000000007
 const int N = 2e5+10;
 using namespace std;
+/*
+
+const int fx[] = {+1,-1,+0,+0};
+const int fy[] = {+0,+0,+1,-1};
+const int fx[] = {+0,+0,+1,-1,-1,+1,-1,+1};
+const int fy[] = {-1,+1,+0,+0,+1,+1,-1,-1};
+const int fx[] = {-2,-2,-1,-1,+1,+1,+2,+2};
+const int fy[] = {-1,+1,-2,+2,-2,+2,-1,+1};
+
+*/
+
+
 
 int main()
 {
     Raihan
     tst
     {
-        
-        
+
+
     }
 
     return 0;
