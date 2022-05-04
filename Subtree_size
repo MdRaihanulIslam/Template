@@ -1,0 +1,12 @@
+int dfs(int node,int par)
+{
+    int cur_size = 1;
+    for(auto child:adj[node])
+    {
+        if(child==par)
+            continue;
+        cur_size+=dfs(child,node);
+    }
+    subsize[node] = cur_size;
+    return cur_size;
+}
