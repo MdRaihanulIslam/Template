@@ -1,14 +1,15 @@
-void dfs(int node)
+bool dfs(int node,int par)
 {
-    if(vis[node]==1)
-    {
-        cycle = 1;
-        return;
-    }
-    if(vis[node]==2)
-        return;
     vis[node] = 1;
     for(auto child:adj[node])
-        dfs(child);
-    vis[node] = 2;
+    {
+        if(vis[child]==0)
+        {
+            if(dfs(child,node)==1)
+                return 1;
+        }
+        else if(child!=par)
+            return 1;
+    }
+    return 0;
 }
