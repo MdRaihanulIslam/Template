@@ -1,0 +1,26 @@
+vl adj[N];
+vector<int>res;
+int indegree[N];
+void kahn(int n)
+{
+    queue<int>q;
+    for(int i=1;i<=n;i++)
+        if(indegree[i]==0)
+        q.push(i);
+    while(!q.empty())
+    {
+        int cur = q.front();
+        res.pb(cur);
+        q.pop();
+        for(auto child:adj[cur])
+        {
+            indegree[child]--;
+            if(indegree[child]==0)
+                q.push(child);
+        }
+    }
+    cout<<"Toposort : ";
+    for(auto it:res)
+        cout<<it<<" ";
+    cout<<endl;
+}
