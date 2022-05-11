@@ -1,27 +1,32 @@
-int depth[N],low[N];
+vi adj[N];
+vector<pair<int,int>>bridges;
 bool vis[N];
-vl adj[N];
-int cnt;
-void dfs(int node,int parrent,int d)
+int low[N],depth[N];
+int cnt = 0;
+void dfs(int node,int par,int d)
 {
-    depth[node] = d;
-    low[node] = d;
     vis[node] = 1;
+    low[node] = depth[node] = d;
     for(auto child:adj[node])
     {
-        if(child==parrent)
+        if(child==par)
             continue;
         if(!vis[child])
         {
             dfs(child,node,d+1);
+            if(low[child]>depth[node])
+            {
+                cnt++;
+                if(child>node)
+                bridges.pb({node,child});
+                else bridges.pb({child,node});
+            }
             low[node] = min(low[node],low[child]);
         }
         else
         {
-             if(depth[child]<depth[node])
+            if(depth[child]<depth[node])
                 low[node] = min(low[node],depth[child]);
         }
     }
-    if(parrent!=-1 && low[node]>depth[parrent])
-        cnt++;
 }
