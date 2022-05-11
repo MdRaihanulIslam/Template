@@ -3,7 +3,7 @@ vector<pair<int,int>>bridges;
 bool vis[N];
 int low[N],depth[N];
 int cnt = 0;
-void dfs(int node,int par,int d)
+void Tarjan(int node,int par,int d)
 {
     vis[node] = 1;
     low[node] = depth[node] = d;
@@ -13,7 +13,7 @@ void dfs(int node,int par,int d)
             continue;
         if(!vis[child])
         {
-            dfs(child,node,d+1);
+            Tarjan(child,node,d+1);
             if(low[child]>depth[node])
             {
                 cnt++;
@@ -30,3 +30,4 @@ void dfs(int node,int par,int d)
         }
     }
 }
+
