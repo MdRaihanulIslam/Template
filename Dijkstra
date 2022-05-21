@@ -1,0 +1,24 @@
+ll dis[N];
+vl adj[N],c[N];
+void dijkstra(int source)
+{
+    set<pair<ll,ll>>st;
+    dis[source] = 0;
+    st.insert({source,0});
+    while(!st.empty())
+    {
+        auto x = *st.begin();
+        st.erase(st.begin());
+        for(int i=0; i<adj[x.F].size(); i++)
+        {
+            ll child = adj[x.F][i];
+            ll cost = c[x.F][i];
+            if(dis[child]>x.S+cost)
+            {
+                dis[child] = x.S+cost;
+                st.insert({child,x.S+cost});
+            }
+        }
+    }
+    return;
+}
