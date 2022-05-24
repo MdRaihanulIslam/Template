@@ -1,0 +1,33 @@
+ll dp[101][101],nxt[101][101];
+string a,b;
+int n,m;
+ll func(int ind1,int ind2)
+{
+    if(ind1>=n || ind2>=m)
+        return 0;
+    if(~dp[ind1][ind2])
+        return dp[ind1][ind2];
+    ll ans = 0;
+    ll val1 = func(ind1+1,ind2);
+    if(val1>ans)
+    {
+        nxt[ind1][ind2] = 1;
+        ans = val1;
+    }
+    ll val2 = func(ind1,ind2+1);
+    if(val2>ans)
+    {
+        nxt[ind1][ind2] = 2;
+        ans = val2;
+    }
+    if(a[ind1]==b[ind2])
+    {
+        ll val = 1+func(ind1+1,ind2+1);
+        if(val>ans)
+        {
+            nxt[ind1][ind2] = 3;
+            ans = val;
+        }
+    }
+    return dp[ind1][ind2] = ans;
+}
