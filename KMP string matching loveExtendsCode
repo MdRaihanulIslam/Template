@@ -1,0 +1,98 @@
+/** Bismillah Hir Rahman Nir Raheem **/
+#include<bits/stdc++.h>
+#define   Raihan          ios::sync_with_stdio(false);cin.tie(0);
+#define   ll              long long int
+#define   ull             unsigned long long int
+#define   tst             int t;cin>>t;while(t--)
+#define   pb              push_back
+#define   vc              vector
+#define   vs              vc<string>
+#define   vi              vc<int>
+#define   vl              vc<ll>
+#define   pii             pair<int,int>
+#define   pll             pair<ll,ll>
+#define   F               first
+#define   S               second
+#define   PI              2*acos(0.0)
+#define   rsrt(v)         sort(v.rbegin(),v.rend());
+#define   all(v)          v.begin(),v.end()
+#define   pf(x)           cout<<x<<endl;
+#define   yes             cout<<"YES"<<endl;
+#define   no              cout<<"NO"<<endl;
+#define   ms(x,n)         memset(x,n,sizeof(x));
+#define   srt(v)          sort(v.begin(),v.end());
+#define   rvs(v)          reverse(v.begin(),v.end());
+#define   gcd(a,b)        __gcd(a,b)
+#define   lcm(a,b)        (a/gcd(a,b))*b
+#define   coutv(v)        for(auto it:v)cout<<it<<' ';cout<<endl;
+#define   cinv(v)         for(auto &it:v)cin>>it;
+#define   mod             1000000007
+const int N = 2e5+10;
+using namespace std;
+/*
+const int fx[] = {+1,-1,+0,+0};
+const int fy[] = {+0,+0,+1,-1};
+const int fx[] = {+0,+0,+1,-1,-1,+1,-1,+1};
+const int fy[] = {-1,+1,+0,+0,+1,+1,-1,-1};
+const int fx[] = {-2,-2,-1,-1,+1,+1,+2,+2};
+const int fy[] = {-1,+1,-2,+2,-2,+2,-1,+1};
+*/
+
+vector<int>createTempArray(string pattern)
+{
+    vector<int>lps(pattern.size());
+    int ind = 0;
+    for(int i=1;i<pattern.size();i++)
+    {
+        if(pattern[ind]==pattern[i])
+        {
+            lps[i] = ind+1;
+            ++ind,++i;
+        }
+        else
+        {
+            if(ind!=0)
+                ind = lps[ind-1];
+            else lps[i] = ind,++i;
+        }
+    }
+    return lps;
+}
+void kmp(string text,string pattern)
+{
+    vector<int>lps = createTempArray(pattern);
+    int i = 0,j = 0;
+    while(i<text.size())
+    {
+        if(text[i]==pattern[j])
+        {
+            ++i,++j;
+        }
+        else
+        {
+            if(j!=0)
+                j = lps[j-1];
+            else ++i;
+        }
+        if(j==pattern.size())
+        {
+            cout<<"Found"<<endl;
+            return;
+        }
+    }
+    cout<<"Not Found"<<endl;
+    return;
+}
+int main()
+{
+    Raihan
+    //tst
+    {
+        string pattern,text;
+        getline(cin,text);
+        getline(cin,pattern);
+        kmp(text,pattern);
+
+    }
+    return 0;
+}
