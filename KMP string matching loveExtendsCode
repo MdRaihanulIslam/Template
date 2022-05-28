@@ -42,7 +42,7 @@ vector<int>createTempArray(string pattern)
 {
     vector<int>lps(pattern.size());
     int ind = 0;
-    for(int i=1;i<pattern.size();i++)
+    for(int i=1;i<pattern.size();)
     {
         if(pattern[ind]==pattern[i])
         {
