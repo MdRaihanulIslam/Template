@@ -38,7 +38,7 @@ const int fx[] = {-2,-2,-1,-1,+1,+1,+2,+2};
 const int fy[] = {-1,+1,-2,+2,-2,+2,-1,+1};
 */
 
-vector<int>createTempArray(string pattern)
+vector<int>LPS(string pattern)
 {
     vector<int>lps(pattern.size());
     int ind = 0;
@@ -60,7 +60,7 @@ vector<int>createTempArray(string pattern)
 }
 void kmp(string text,string pattern)
 {
-    vector<int>lps = createTempArray(pattern);
+    vector<int>lps = LPS(pattern);
     int i = 0,j = 0;
     while(i<text.size())
     {
