@@ -1,0 +1,15 @@
+ll com[1001][1001];
+void combination()
+{
+    com[1][0] = com[1][1] = 1;
+    for(int i=2;i<=1000;i++)
+    {
+        com[i][0] = 1;
+        for(int j=1;j<=i;j++)
+        {
+            com[i][j] = com[i-1][j]+com[i-1][j-1];
+            com[i][j]%=mod;
+        }
+    }
+    return;
+}
