@@ -1,0 +1,39 @@
+ll table[32][100];
+ll query(ll l,ll r)
+{
+    int len = r-l+1;
+    int k = log(len);
+    return max(table[l][k],table[r-(1<<k)+1][k]);
+}
+int main()
+{
+    Raihan
+    //tst
+    {
+        int n;
+        cin>>n;
+        vl a(n+1);
+        for(int i=1;i<=n;i++)
+            cin>>a[i];
+        for(int i=1;i<=n;i++)
+            table[i][0] = a[i];
+        for(int k=1;k<=20;k++)
+        {
+            for(int i=1;i+(1<<k)-1<=n;i++)
+            {
+                table[i][k] = max(table[i][k-1],table[i+(1<<k-1)][k-1]);
+            }
+        }
+        ll q;
+        cin>>q;
+        while(q--)
+        {
+            ll l,r;
+            cin>>l>>r;
+            ll ans = query(l,r);
+            cout<<ans<<endl;
+        }
+    }
+
+    return 0;
+}
