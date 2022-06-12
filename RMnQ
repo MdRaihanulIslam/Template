@@ -39,18 +39,18 @@ const int fx[] = {-2,-2,-1,-1,+1,+1,+2,+2};
 const int fy[] = {-1,+1,-2,+2,-2,+2,-1,+1};
 */
 
-#define k 25
+const int k = 25;
 
-ll Log[N],a[N],table[N][k];
+ll Log[N],a[N],table[N][k],n,q;
 
-void PreLog(int n)
+void PreLog()
 {
     Log[1]=0;
     for(int i=2 ; i<=n ; i++)
         Log[i] = 1+Log[i/2];
 }
 
-void SpTable(int n)
+void SpTable()
 {
     for(int i=0 ; i<n ; i++)
         table[i][0] = a[i];
@@ -73,13 +73,11 @@ int main()
     Raihan
     //tst
     {
-        ll n;
         cin>>n;
         for(int i=0;i<n;i++)
             cin>>a[i];
-        PreLog(n);
-        SpTable(n);
-        ll q;
+        PreLog();
+        SpTable();
         cin>>q;
         while(q--)
         {
