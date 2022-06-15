@@ -44,7 +44,7 @@ vl adj[N];
 void Bfs(ll start)
 {
     memset(parent,-1,sizeof(parent));
-    memset(level,0,sizeof(parent));
+    memset(level,0,sizeof(level));
     memset(vis,0,sizeof(vis));
     queue<ll>q;
     vis[start] = 1;
